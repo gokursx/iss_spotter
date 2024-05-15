@@ -18,7 +18,7 @@ const fetchCoordsByIP = function(ip) {
 };
 
 const fetchISSFlyOverTimes = function(coords) {
-  const flyoverUrl = ``;
+  const flyoverUrl = `http://ipwho.is/${ip}`;
   return needle.get(flyoverUrl);
 };
 
