@@ -24,4 +24,4 @@ fetchCoordsByIP (ip, callback) {
 
 module.exports = { fetchMyIP };
 //Exporting fetchCoordsByIP function
-module.exports = { fetchMyIP };
+module.exports = { fetchCoordsByIP };
