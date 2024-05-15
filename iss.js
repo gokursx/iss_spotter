@@ -11,7 +11,7 @@ const request = require('request');
 
 const fetchMyIP = function(callback) { 
   // use request to fetch IP address from JSON API
-  request('https://api.ipify.org?format=json', (error, data) => {
+  request('https://api.ipify.org?format=json', (error, response, body) => {
     // handle error and response here
       // inside the request callback ...
   // error can be set if invalid domain, user is offline, etc.
@@ -25,6 +25,7 @@ const fetchMyIP = function(callback) {
     callback(Error(msg), null);
     return;
   }
+    const parsedBody = JSON.parse(body);
 
   // if we get here, all's well and we got the data
   });
@@ -32,9 +33,9 @@ const fetchMyIP = function(callback) {
 
 const fetchCoordsByIP = function(ip, callback) {
   // your code here
-  const geoLocationUrl = `http://ipwho.is/8.8.4.4`;
+  const geoLocationUrl = `http://ipwho.is/${ip}`;
 
-  request(geoLocationUrl, (error, data) => {
+  request(geoLocationUrl, (error, response, body) => {
 
   if (error) {
       callback(error, null);
@@ -46,7 +47,7 @@ const fetchCoordsByIP = function(ip, callback) {
     callback(Error(msg), null);
     return;
   }
-  const parsedBody = JSON.parse(data);
+  const parsedBody = JSON.parse(body);
     const latLong = {lat: parsedBody.latitude, long: parsedBody.longitude};
     callback(null, latLong);
   });
