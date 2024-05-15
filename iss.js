@@ -64,8 +64,8 @@ const fetchCoordsByIP = function(ip, callback) {
  *     [ { risetime: 134564234, duration: 600 }, ... ]
  */
 const fetchISSFlyOverTimes = function(coords, callback) {
-  
-  const flyoverUrl = `https://iss-flyover.herokuapp.com/json/?lat=YOUR_LAT_INPUT_HERE&lon=YOUR_LON_INPUT_HERE`;
+  //Inserting latitude and longitude into the url
+  const flyoverUrl = `https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`;
   
   request(flyoverUrl, (error, response, body) => {
     if (error) {
@@ -83,6 +83,9 @@ const fetchISSFlyOverTimes = function(coords, callback) {
     callback(null, JSON.parse(body));
   });
 };
+
+//Exporting functions
+module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
 
 
 //module.exports = { fetchMyIP };
