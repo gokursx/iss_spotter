@@ -100,6 +100,31 @@ const fetchISSFlyOverTimes = function(coords, callback) {
  */ 
 const nextISSTimesForMyLocation = function(callback) {
   // empty for now
+  //Calling fetchMyIP
+  fetchMyIP((error, ip) => {
+    if (error) {
+      callback(error, null)
+      return;
+    }
+    //Calling fetchCoordsByIP
+    fetchCoordsByIP(ip, (error, latLong) => {
+      //checks for error 
+      if (error) {
+        callback(error, null)
+        return;
+      }
+
+      //Calling fetchISSFlyOverTimes
+      fetchISSFlyOverTimes(latLong, (error, flyoverTimes) => {
+        if (error) {
+          callback(error, null)
+          return;
+        }
+          //returns flyoverTimes to callback function
+        callback(null, flyoverTimes);
+      });
+    });  
+  });    
 }
 
 //module.exports = { fetchMyIP };
