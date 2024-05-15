@@ -84,11 +84,9 @@ const fetchISSFlyOverTimes = function(coords, callback) {
   });
 };
 
-//Exporting functions
-module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
-
-
 //module.exports = { fetchMyIP };
 //Exporting fetchCoordsByIP function
 //module.exports = { fetchCoordsByIP };
-module.exports = { fetchMyIP, fetchCoordsByIP };
+
+//Exporting functions
+module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
