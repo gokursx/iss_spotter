@@ -16,12 +16,24 @@ const fetchMyIP = function(callback) {
   });
 }
 
-fetchCoordsByIP (ip, callback) {
-   
+const fetchCoordsByIP = function(ip, callback) {
+  // your code here
+  const geoLocationUrl = `http://ipwho.is/8.8.4.4`;
 
-  
+  request(geoLocationUrl, (error, data) => {
+
+  if (error) {
+      callback(error, null);
+      return;
+    }
+  const parsedBody = JSON.parse(data);
+    const latLong = {lat: parsedBody.latitude, long: parsedBody.longitude};
+    callback(null, latLong);
+  });
 };
 
-module.exports = { fetchMyIP };
+
+//module.exports = { fetchMyIP };
 //Exporting fetchCoordsByIP function
-module.exports = { fetchCoordsByIP };
+//module.exports = { fetchCoordsByIP };
+module.exports = { fetchMyIP, fetchCoordsByIP };
