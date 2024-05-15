@@ -13,6 +13,7 @@
 const request = require('request');
 
 const fetchMyIP = function(callback) { 
+  
   // use request to fetch IP address from JSON API
   request('https://api.ipify.org?format=json', (error, response, body) => {
     // handle error and response here
@@ -29,6 +30,7 @@ const fetchMyIP = function(callback) {
     return;
   }
     const parsedBody = JSON.parse(body);
+     callback(null, parsedBody.ip);
 
   // if we get here, all's well and we got the data
   });
@@ -68,7 +70,7 @@ const fetchCoordsByIP = function(ip, callback) {
  */
 const fetchISSFlyOverTimes = function(coords, callback) {
   //Inserting latitude and longitude into the url
-  const flyoverUrl = `https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`;
+  const flyoverUrl = ``;
   
   request(flyoverUrl, (error, response, body) => {
     if (error) {
